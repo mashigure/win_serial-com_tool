@@ -64,7 +64,31 @@ namespace SerialCOMform
 
         private void printRecievedStr(string data)
         {
-            ReceiveTextBox.Text += data;
+            string recv_str = "";
+
+            // 受信文字列の表示
+            if (radioButtonDEC.Checked == true)
+            {
+                for(int i=0; i<data.Length; i++)
+                {
+                    int ch_value = (int)data[i];
+                    recv_str += ch_value.ToString() + " ";
+                }
+            }
+            else if (radioButtonHEX.Checked == true)
+            {
+                for (int i = 0; i < data.Length; i++)
+                {
+                    int ch_value = (int)data[i];
+                    recv_str += String.Format("{0:X}", ch_value) + " ";
+                }
+            }
+            else
+            {
+                recv_str = data;
+            }
+
+            ReceiveTextBox.Text += recv_str;
 
             // 自動スクロール
             ReceiveTextBox.SelectionStart = ReceiveTextBox.Text.Length;
