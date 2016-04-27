@@ -8,6 +8,9 @@ This software is developed as a Windows Form Application using Visual Studio 201
 Visual Studio2015を用いて開発されたWindowsフォームアプリケーションであり、C#で記述されています。
 
 
+![img/SerialCOM_SS.png](img/SerialCOM_SS.png)
+
+
 Arduino IDEには無い機能として、ラジオボタンで受信したデータの表示形式を変更することができます
 
 + ASCII: 文字列として表示します
