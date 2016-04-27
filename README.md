@@ -11,7 +11,7 @@ Visual Studio2015を用いて開発されたWindowsフォームアプリケー�
 ![img/SerialCOM_SS.png](img/SerialCOM_SS.png)
 
 
-Arduino IDEには無い機能として、ラジオボタンで受信したデータの表示形式を変更することができます
+Arduino IDEのシリアルモニタには無い機能として、ラジオボタンで受信したデータの表示形式を変更することができます
 
 + ASCII: 文字列として表示します
 + DEC: 10進数の値として表示します
