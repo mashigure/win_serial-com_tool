@@ -60,32 +60,26 @@ namespace SerialCOMform
             COMcomboBox.Items.AddRange(SerialPort.GetPortNames());
         }
 
-        private delegate void printRecievedStrDelegate(string data);
+        private delegate void printRecievedStrDelegate(byte data);
 
-        private void printRecievedStr(string data)
+        private void printRecievedStr(byte data)
         {
             string recv_str = "";
 
-            // 受信文字列の表示
+            // 受信値の表示
             if (radioButtonDEC.Checked == true)
             {
-                for(int i=0; i<data.Length; i++)
-                {
-                    int ch_value = (int)data[i];
-                    recv_str += ch_value.ToString() + " ";
-                }
+                int ch_value = (int)data;
+                recv_str += ch_value.ToString() + " ";
             }
             else if (radioButtonHEX.Checked == true)
             {
-                for (int i = 0; i < data.Length; i++)
-                {
-                    int ch_value = (int)data[i];
+                    int ch_value = (int)data;
                     recv_str += String.Format("{0:X}", ch_value) + " ";
-                }
             }
             else
             {
-                recv_str = data;
+                recv_str = ((char)data).ToString();
             }
 
             ReceiveTextBox.Text += recv_str;
@@ -99,9 +93,15 @@ namespace SerialCOMform
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            string received_str = serialPort1.ReadExisting();
-            printRecievedStrDelegate print = new printRecievedStrDelegate(printRecievedStr);
-            ReceiveTextBox.Invoke(print, received_str);
+            const int BUFF_SIZE = 256;
+            byte[] buff = new byte[BUFF_SIZE];
+            int read_size = serialPort1.Read( buff, 0, BUFF_SIZE );
+
+            for (int i=0; i<read_size; i++)
+            {
+                printRecievedStrDelegate print = new printRecievedStrDelegate(printRecievedStr);
+                ReceiveTextBox.Invoke(print, buff[i]);
+            }
         }
 
         private void SendText_KeyDown(object sender, KeyEventArgs e)
