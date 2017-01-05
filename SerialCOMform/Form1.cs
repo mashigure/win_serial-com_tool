@@ -36,8 +36,10 @@ namespace SerialCOMform
                 {
                     serialPort1.Close();
                     ConnectButton.Text = "Connect";
-                    SendButton.Enabled = false;
                     toolStripStatusLabel1.Text = "Not connected";
+                    SendButton.Enabled = false;
+                    COMcomboBox.Enabled = true;
+                    BaudComboBox.Enabled = true;
                 }
                 else
                 {
@@ -45,12 +47,17 @@ namespace SerialCOMform
                     serialPort1.BaudRate = Int32.Parse( BaudComboBox.Text );
                     serialPort1.Open();
                     ConnectButton.Text = "Disconnect";
-                    SendButton.Enabled = true;
                     toolStripStatusLabel1.Text = "Connected (" + COMcomboBox.Text + ")";
+                    SendButton.Enabled = true;
+                    COMcomboBox.Enabled = false;
+                    BaudComboBox.Enabled = false;
                 }
             }
             catch {
                 toolStripStatusLabel1.Text = "Error";
+                SendButton.Enabled = false;
+                COMcomboBox.Enabled = true;
+                BaudComboBox.Enabled = true;
             }
         }
 

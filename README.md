@@ -17,3 +17,6 @@ Arduino IDEのシリアルモニタには無い機能として、ラジオボタ
 + DEC: 10進数の値として表示します
 + HEX: 16進数の値として表示します
 
+使ってみたいけどソースコードは要らねえ！と言う方は
+「[win_serial-com_tool/SerialCOMform/bin/Release/](https://github.com/mashigure/win_serial-com_tool/tree/master/SerialCOMform/bin/Release)SerialCOMform.exe」をダウンロード下さい。
+
